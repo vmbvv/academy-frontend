@@ -3,13 +3,15 @@ import Layout from "./components/Layout";
 import { exercises } from "./exercises/registry";
 
 function App() {
+  const firstPath = exercises[0]?.path;
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={<Navigate to={`/${exercises[0].path}`} replace />}
+            element={firstPath ? <Navigate to={firstPath} replace /> : <div />}
           />
           {exercises.map((exercise) => {
             const Component = exercise.component;
@@ -21,6 +23,10 @@ function App() {
               />
             );
           })}
+          <Route
+            path="*"
+            element={firstPath ? <Navigate to={firstPath} replace /> : <div />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

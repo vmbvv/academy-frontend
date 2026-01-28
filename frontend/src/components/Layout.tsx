@@ -1,10 +1,15 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { Home, ChevronRight, Menu, X, CheckCircle, Circle } from "lucide-react";
-import { useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { ChevronRight, Menu, X, CheckCircle, Circle } from "lucide-react";
+import { useEffect, useState } from "react";
 import { exercises } from "../exercises/registry";
 
 export default function Layout() {
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-900 text-white">
@@ -30,25 +35,6 @@ export default function Layout() {
         </div>
 
         <nav className="h-[calc(100vh-5rem)] overflow-y-auto p-4 space-y-1">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `
-                flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-                ${
-                  isActive
-                    ? "bg-cyan-500/10 text-cyan-400 font-medium"
-                    : "text-slate-400 hover:bg-slate-900 hover:text-white"
-                }
-              `
-            }
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <Home size={18} />
-            <span>Home</span>
-          </NavLink>
-
           <div className="px-4 pt-6 pb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
             EXERCISES
           </div>
@@ -60,7 +46,7 @@ export default function Layout() {
               return (
                 <NavLink
                   key={ex.id}
-                  to={`/${ex.path}`}
+                  to={ex.path}
                   className={({ isActive }) =>
                     `
                       flex items-center justify-between px-4 py-2.5 rounded-lg text-sm transition-all group
