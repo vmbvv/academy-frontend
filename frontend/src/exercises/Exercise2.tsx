@@ -20,6 +20,8 @@ export default function Exercise2() {
           <button
             onClick={() => setCount((c) => c - 1)}
             className="bg-red-500 text-white border-0 rounded-lg w-16 h-16 flex items-center justify-center cursor-pointer transition-transform active:scale-95 hover:bg-red-600"
+            aria-label="Decrement"
+            type="button"
           >
             <Minus size={32} />
           </button>
@@ -34,6 +36,8 @@ export default function Exercise2() {
           <button
             onClick={() => setCount((c) => c + 1)}
             className="bg-green-500 text-white border-0 rounded-lg w-16 h-16 flex items-center justify-center cursor-pointer transition-transform active:scale-95 hover:bg-green-600"
+            aria-label="Increment"
+            type="button"
           >
             <Plus size={32} />
           </button>

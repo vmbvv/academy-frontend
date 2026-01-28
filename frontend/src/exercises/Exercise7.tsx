@@ -1,17 +1,43 @@
 ﻿import { useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 
+type FruitItem = {
+  id: number;
+  text: string;
+  emoji: string;
+};
+
+const getEmojiForItem = (text: string) => {
+  const value = text.trim().toLowerCase();
+  if (value.includes("apple")) return "🍎";
+  if (value.includes("banana")) return "🍌";
+  if (value.includes("orange")) return "🍊";
+  if (value.includes("grape")) return "🍇";
+  if (value.includes("strawberry")) return "🍓";
+  if (value.includes("watermelon")) return "🍉";
+  if (value.includes("melon")) return "🍈";
+  if (value.includes("pear")) return "🍐";
+  if (value.includes("peach")) return "🍑";
+  if (value.includes("kiwi")) return "🥝";
+  if (value.includes("mango")) return "🥭";
+  if (value.includes("pineapple")) return "🍍";
+  return "🍎";
+};
+
 export default function Exercise7() {
-  const [items, setItems] = useState([
-    { id: 1, text: "Apple" },
-    { id: 2, text: "Banana" },
-    { id: 3, text: "Orange" },
+  const [items, setItems] = useState<FruitItem[]>([
+    { id: 1, text: "Apple", emoji: "🍎" },
+    { id: 2, text: "Banana", emoji: "🍌" },
+    { id: 3, text: "Orange", emoji: "🍊" },
   ]);
   const [newItem, setNewItem] = useState("");
 
   const addItem = () => {
     if (!newItem.trim()) return;
-    setItems([...items, { id: Date.now(), text: newItem }]);
+    setItems([
+      ...items,
+      { id: Date.now(), text: newItem, emoji: getEmojiForItem(newItem) },
+    ]);
     setNewItem("");
   };
 
@@ -41,6 +67,8 @@ export default function Exercise7() {
           <button
             onClick={addItem}
             className="bg-cyan-500 hover:bg-cyan-600 text-white border-0 rounded-lg w-12 flex items-center justify-center cursor-pointer transition-colors"
+            aria-label="Add item"
+            type="button"
           >
             <Plus size={24} />
           </button>
@@ -53,7 +81,7 @@ export default function Exercise7() {
               className="bg-slate-900 p-4 rounded-lg border border-slate-700 flex justify-between items-center animate-in slide-in-from-left-2 duration-200"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl font-emoji">🍎</span>
+                <span className="text-xl font-emoji">{item.emoji}</span>
                 <span className="font-medium">{item.text}</span>
               </div>
 

@@ -26,6 +26,8 @@ function CounterDisplay({
           <button
             onClick={counter.decrement}
             className="bg-red-500 hover:bg-red-600 text-white border-0 rounded-lg w-10 h-10 flex items-center justify-center cursor-pointer transition-colors"
+            aria-label="Decrement"
+            type="button"
           >
             <Minus size={20} />
           </button>
@@ -40,6 +42,8 @@ function CounterDisplay({
           <button
             onClick={counter.increment}
             className="bg-green-500 hover:bg-green-600 text-white border-0 rounded-lg w-10 h-10 flex items-center justify-center cursor-pointer transition-colors"
+            aria-label="Increment"
+            type="button"
           >
             <Plus size={20} />
           </button>

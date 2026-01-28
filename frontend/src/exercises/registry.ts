@@ -1,25 +1,26 @@
-import type { ComponentType } from "react";
-import Exercise1 from "./Exercise1";
-import Exercise2 from "./Exercise2";
-import Exercise3 from "./Exercise3";
-import Exercise4 from "./Exercise4";
-import Exercise5 from "./Exercise5";
-import Exercise6 from "./Exercise6";
-import Exercise7 from "./Exercise7";
-import Exercise8 from "./Exercise8";
-import Exercise9 from "./Exercise9";
-import Exercise10 from "./Exercise10";
-import Exercise11 from "./Exercise11";
-import Exercise12 from "./Exercise12";
-import Exercise13 from "./Exercise13";
-import Exercise14 from "./Exercise14";
-import Exercise15 from "./Exercise15";
+import { lazy, type ComponentType, type LazyExoticComponent } from "react";
+
+const Exercise1 = lazy(() => import("./Exercise1"));
+const Exercise2 = lazy(() => import("./Exercise2"));
+const Exercise3 = lazy(() => import("./Exercise3"));
+const Exercise4 = lazy(() => import("./Exercise4"));
+const Exercise5 = lazy(() => import("./Exercise5"));
+const Exercise6 = lazy(() => import("./Exercise6"));
+const Exercise7 = lazy(() => import("./Exercise7"));
+const Exercise8 = lazy(() => import("./Exercise8"));
+const Exercise9 = lazy(() => import("./Exercise9"));
+const Exercise10 = lazy(() => import("./Exercise10"));
+const Exercise11 = lazy(() => import("./Exercise11"));
+const Exercise12 = lazy(() => import("./Exercise12"));
+const Exercise13 = lazy(() => import("./Exercise13"));
+const Exercise14 = lazy(() => import("./Exercise14"));
+const Exercise15 = lazy(() => import("./Exercise15"));
 
 export type ExerciseConfig = {
   id: number;
   title: string;
   path: string;
-  component: ComponentType;
+  component: LazyExoticComponent<ComponentType>;
 };
 
 export const exercises: ExerciseConfig[] = [

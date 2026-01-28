@@ -79,6 +79,8 @@ export default function Exercise5() {
               <button
                 onClick={() => deleteTodo(todo.id)}
                 className="text-red-500 opacity-70 hover:opacity-100 p-1 rounded hover:bg-red-500/10 transition-all"
+                aria-label={`Delete ${todo.text}`}
+                type="button"
               >
                 <Trash2 size={18} />
               </button>
